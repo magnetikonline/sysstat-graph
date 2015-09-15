@@ -185,7 +185,7 @@ class importstatfiledata {
 		// validate the data line has the right number of data parts for the file section
 		if (
 			(!isset($this->datalinepartslookuplist[$this->currentfilesection])) ||
-			($this->datalinepartslookuplist[$this->currentfilesection] != sizeof($inputlinepartlist))
+			($this->datalinepartslookuplist[$this->currentfilesection] != count($inputlinepartlist))
 		) {
 			// invalid number of line data parts for current file section - reject the data line
 			return;
