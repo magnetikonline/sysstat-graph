@@ -387,6 +387,9 @@ var rendergraph = function() {
 
 					if (!graphlinelist.length) return;
 
+					// test if there is data for this metric
+					if (!graphlinelist[0].data) return;
+
 					// increment the graph instance id, used to build the jump to anchor TOC
 					graphinstanceid++;
 
