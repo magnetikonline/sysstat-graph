@@ -12,7 +12,7 @@ $generatestatdata->execute();
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-	<title>SysStat Graph</title>
+	<title>Sysstat Graph</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<script type="text/javascript" src="sysstatgraph.js"></script>
 	<script type="text/javascript" src="rendergraph.js"></script>
@@ -22,7 +22,7 @@ $generatestatdata->execute();
 
 <body>
 
-	<h1>SysStat Graph</h1>
+	<h1>Sysstat Graph</h1>
 
 	<div id="content"></div>
 
