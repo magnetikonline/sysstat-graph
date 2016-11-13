@@ -1,14 +1,9 @@
 <?php
-// buildjsonstructure.php
-
-
-
 class buildjsonstructure {
 
 	private $networkinterfacelist = array();
 	private $timepointlist = array();
 	private $stattypelist = array();
-
 
 
 	public function __construct(array $inputnetworkinterfacelist,array $inputtimepointlist,array $inputstattypelist) {
@@ -31,29 +26,29 @@ class buildjsonstructure {
 			'networkinterfacelist: [\'' . implode('\',\'',$this->networkinterfacelist) . '\'],' .
 			'timepointlist: [';
 
-		$first = TRUE;
+		$first = true;
 		foreach ($this->timepointlist as $value) {
 			$json .= (($first) ? '' : ',') . ($value - $lasttimestamp);
-			$first = FALSE;
+			$first = false;
 			$lasttimestamp = $value;
 		}
 
 		$json .= '],valuelist: {';
 
 		// build stat data lists
-		$firsttype = TRUE;
+		$firsttype = true;
 		foreach ($this->stattypelist as $type => $valuelist) {
 			if (!$firsttype) $json .= ',';
 			$json .= '\'' . $type . '\': [';
 
-			$firstvalue = TRUE;
+			$firstvalue = true;
 			foreach ($valuelist as $value) {
 				$json .= (($firstvalue) ? '' : ',') . $value;
-				$firstvalue = FALSE;
+				$firstvalue = false;
 			}
 
 			$json .= ']';
-			$firsttype = FALSE;
+			$firsttype = false;
 		}
 
 		$json .= '}}';

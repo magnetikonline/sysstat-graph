@@ -1,13 +1,8 @@
 <?php
-// index.php
-
-
-
 require('config.php');
 require('generatestatdata.php');
 require('importstatfiledata.php');
 require('buildjsonstructure.php');
-
 
 
 $generatestatdata = new generatestatdata();

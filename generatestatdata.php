@@ -1,8 +1,4 @@
 <?php
-// generatestatdata.php
-
-
-
 /*
 Graph #1
 	proc/s - Tasks created per second
@@ -38,10 +34,7 @@ Graph #n+1 (network)
 */
 
 
-
 class generatestatdata {
-
-
 
 	public function execute() {
 
@@ -76,7 +69,7 @@ class generatestatdata {
 		);
 
 		$fp = fopen(JSONSTRUCTUREFILENAME,'w');
-		if ($fp === FALSE) {
+		if ($fp === false) {
 			die('Error: Unable to create ' . realpath('.') . '/' . JSONSTRUCTUREFILENAME . ' - possible file system permissions issue.');
 		}
 

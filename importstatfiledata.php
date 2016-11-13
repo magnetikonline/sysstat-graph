@@ -1,8 +1,4 @@
 <?php
-// importstatfiledata.php
-
-
-
 class importstatfiledata {
 
 	const filesection_taskspersecond = 'taskspersecond';
@@ -37,8 +33,7 @@ class importstatfiledata {
 	private $timepointlist = array();
 	private $stattypelist = array();
 	private $currentfilesection = '';
-	private $twelvehourtimeformat = FALSE;
-
+	private $twelvehourtimeformat = false;
 
 
 	public function __construct() {
@@ -52,13 +47,13 @@ class importstatfiledata {
 		$fp = fopen($inputfilename,'r');
 
 		// first line will contain the date of the report - must exist
-		if (!($filedatetimestamp = (!feof($fp)) ? $this->getfiledatetimestamp(fgets($fp)) : FALSE)) {
+		if (!($filedatetimestamp = (!feof($fp)) ? $this->getfiledatetimestamp(fgets($fp)) : false)) {
 			// cant locate file date - exit
 			fclose($fp);
 			return;
 		}
 
-		$firstdataline = TRUE;
+		$firstdataline = true;
 		while (!feof($fp)) {
 			$linetext = trim(fgets($fp));
 			if ($linetext == '') {
@@ -70,7 +65,7 @@ class importstatfiledata {
 			if ($firstdataline) {
 				// determine if times are in 12/24 hour format
 				$this->twelvehourtimeformat = preg_match('/^\d{2}:\d{2}:\d{2} (AM|PM) /',$linetext);
-				$firstdataline = FALSE;
+				$firstdataline = false;
 			}
 
 			if ($this->twelvehourtimeformat) {
@@ -88,7 +83,7 @@ class importstatfiledata {
 			}
 
 			// get report time for the current line as a unix timestamp
-			// if FALSE, then not a valid line we want to process
+			// if false, then not a valid line we want to process
 			if (!($linetimestamp = $this->getlinetimestamp($lineparts[0]))) {
 				// invalid time - next line
 				continue;
@@ -140,19 +135,19 @@ class importstatfiledata {
 		// convert YYYY-MM-DD to a unix timestamp
 		return (preg_match('/(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})/',rtrim($inputfirstline),$match))
 			? mktime(0,0,0,intval($match['month']),intval($match['day']),intval($match['year']))
-			: FALSE;
+			: false;
 	}
 
 	private function checkfilesection($inputvalue) {
 
 		if (!isset($this->filesectionkeylist[$inputvalue])) {
 			// key not found - ignore
-			return FALSE;
+			return false;
 		}
 
 		// store current file section
 		$this->currentfilesection = $this->filesectionkeylist[$inputvalue];
-		return TRUE;
+		return true;
 	}
 
 	private function getlinetimestamp($inputtime) {
@@ -177,7 +172,7 @@ class importstatfiledata {
 		}
 
 		// not a valid match
-		return FALSE;
+		return false;
 	}
 
 	private function recorddataline($inputtimestamp,array $inputlinepartlist) {
@@ -242,7 +237,7 @@ class importstatfiledata {
 			if (!in_array($adaptername,$this->networkinterfacelist)) return;
 
 			// save as valid network adapter
-			$this->validnetworkinterfacelist[$adaptername] = TRUE;
+			$this->validnetworkinterfacelist[$adaptername] = true;
 
 			// packets sent/received
 			$this->recordstat($inputtimestamp,'pcktsrecvpersecond-' . $adaptername,floatval($inputlinepartlist[2]));
@@ -258,7 +253,7 @@ class importstatfiledata {
 
 	private function recordstat($inputtimestamp,$inputstattype,$inputvalue) {
 
-		$this->timepointlist[$inputtimestamp] = TRUE;
+		$this->timepointlist[$inputtimestamp] = true;
 		$this->stattypelist[$inputstattype][$inputtimestamp] = $inputvalue;
 	}
 
