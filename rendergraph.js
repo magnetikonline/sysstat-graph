@@ -372,10 +372,10 @@ var rendergraph = function() {
 			return {
 				addgraphline: function(title,datalist) {
 
-					graphlinelist[graphlinelist.length] = {
+					graphlinelist.push({
 						title: title,
 						data: datalist
-					};
+					});
 				},
 
 				setpercent: function() {
