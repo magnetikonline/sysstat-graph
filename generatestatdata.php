@@ -83,7 +83,7 @@ class generatestatdata {
 		if (!is_dir($inputdatapath)) return array();
 
 		// fetch all files in data folder
-		return glob($inputdatapath . '/sa??');
+		return glob($inputdatapath . '/sar??');
 	}
 
 	private function getsardatalatesttimestamp(array $inputfilelist) {
